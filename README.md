@@ -12,8 +12,8 @@ Two pages, no build step, no backend.
 
 | Path | What it is |
 |---|---|
-| `SkillsJewels Landing.dc.html` | The landing page — hero, the gap, the four-step model (Translate, Package, Connect, Count), enquiry form |
-| `SkillsJewels Flier.dc.html` | A one-page A4 flier, same content, built to print or export to PDF |
+| `index.html` | The landing page — hero, the gap, the four-step model (Translate, Package, Connect, Count), enquiry form |
+| `flier.html` | A one-page A4 flier, same content, built to print or export to PDF |
 | `assets/` | Logo SVGs — horizontal lockup and mark, each in standard and reversed |
 | `_ds/industry-…/` | The "Industry" design system the pages were generated against: `styles.css`, token manifest, lint config |
 | `support.js` | Claude Design runtime — parses the `<x-dc>` template and its logic block, renders via React |
