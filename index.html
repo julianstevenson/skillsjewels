@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,7 +117,11 @@
           </div>
         </sc-if>
         <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
-          <form onSubmit="{{ submit }}" style="display: flex; flex-direction: column; gap: 18px;">
+          <form id="enquiry-form" onSubmit="{{ submit }}" style="display: flex; flex-direction: column; gap: 18px;">
+            <input type="hidden" name="access_key" value="431c4e07-c2bd-48d1-924c-912e8ff71111">
+            <input type="hidden" name="subject" value="SkillsJewels — scoping call enquiry">
+            <input type="hidden" name="from_name" value="SkillsJewels website">
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display: none;">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
               <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(247,245,240,0.8);">Name
                 <input name="name" required="{{ true }}" style="background: transparent; border: 1px solid rgba(247,245,240,0.4); border-radius: 0; color: #F7F5F0; font-family: 'Public Sans', Arial, sans-serif; font-size: 15px; padding: 11px 12px; letter-spacing: 0; text-transform: none;">
@@ -144,6 +149,7 @@
             <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(247,245,240,0.8);">Anything we should read first
               <textarea name="notes" rows="3" style="background: transparent; border: 1px solid rgba(247,245,240,0.4); border-radius: 0; color: #F7F5F0; font-family: 'Public Sans', Arial, sans-serif; font-size: 15px; padding: 11px 12px; letter-spacing: 0; text-transform: none; resize: vertical;"></textarea>
             </label>
+            <p id="enquiry-error" role="alert" style="display: none; margin: 0; font-size: 14px; line-height: 1.5; color: #F7F5F0; border-left: 2px solid #C89B3C; padding-left: 12px;">That didn't send. Try again, or email hello@skillsjewels.com.au directly.</p>
             <button type="submit" style="align-self: flex-start; background: #F7F5F0; color: #1B3A5C; border: none; border-radius: 0; font-family: 'Public Sans', Arial, sans-serif; font-weight: 600; font-size: 15px; padding: 14px 24px; cursor: pointer;" style-hover="background: #ffffff">Request the call</button>
           </form>
         </sc-if>
@@ -167,7 +173,39 @@ class Component extends DCLogic {
     return {
       sent: this.state.sent,
       notSent: !this.state.sent,
-      submit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      submit: (e) => {
+        e.preventDefault();
+        const form = (e.target && e.target.closest) ? e.target.closest('form') : document.getElementById('enquiry-form');
+        if (!form || form.dataset.sending === 'true') return;
+
+        const button = form.querySelector('button[type="submit"]');
+        const error = form.querySelector('#enquiry-error');
+        const label = button ? button.textContent : '';
+
+        form.dataset.sending = 'true';
+        if (error) error.style.display = 'none';
+        if (button) { button.disabled = true; button.textContent = 'Sending...'; }
+
+        const payload = {};
+        new FormData(form).forEach((value, key) => { payload[key] = value; });
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (!data || data.success !== true) throw new Error('Submission rejected');
+            form.dataset.sending = 'false';
+            this.setState({ sent: true });
+          })
+          .catch(() => {
+            form.dataset.sending = 'false';
+            if (button) { button.disabled = false; button.textContent = label; }
+            if (error) error.style.display = 'block';
+          });
+      },
       reset: () => this.setState({ sent: false })
     };
   }
