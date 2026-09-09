@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO: update to https://skillsjewels.com.au/sitemap.xml once CNAME points there instead of julianstevenson.com — see README §3
+Sitemap: https://www.julianstevenson.com/sitemap.xml
