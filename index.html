@@ -60,6 +60,7 @@
     }
     body { margin: 0; background: #F7F5F0; }
     a { color: #5B3A73; }
+    .sj-hero-photo { display: none; }
     a:hover { color: #1B3A5C; }
     *:focus-visible { outline: 2px solid #5B3A73; outline-offset: 2px; }
 
@@ -71,6 +72,9 @@
       .sj-nav { gap: 18px !important; }
       .sj-logo { width: 160px !important; }
       .sj-cards { grid-template-columns: 1fr !important; }
+      .sj-hero-bg { background-image: none !important; }
+      .sj-hero { min-height: 0 !important; }
+      .sj-hero-photo { display: block !important; }
     }
 
     @media (max-width: 560px) {
@@ -97,34 +101,20 @@
     </div>
   </nav>
 
-  <header class="sj-section sj-hero sj-split" style="max-width: 1160px; margin: 0 auto; padding: 88px 32px 72px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 72px; align-items: start;">
-    <div style="display: flex; flex-direction: column; gap: 26px;">
+  <div class="sj-hero-bg" style="background-color: #F7F5F0; background-image: linear-gradient(90deg, rgba(247,245,240,0.97) 0%, rgba(247,245,240,0.92) 36%, rgba(247,245,240,0.45) 50%, rgba(247,245,240,0) 60%), url('assets/hero.jpg'); background-size: cover; background-position: left 30%;">
+  <header class="sj-section sj-hero" style="max-width: 1160px; margin: 0 auto; padding: 104px 32px 112px; min-height: 520px; display: flex; align-items: center;">
+    <div style="display: flex; flex-direction: column; gap: 26px; max-width: 560px;">
       <p style="margin: 0; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(27,58,92,0.7);">TERTIARY EDUCATION, INDUSTRY AND EMPLOYMENT SERVICES</p>
-      <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 60px; line-height: 1.04; letter-spacing: -0.022em; color: #1B3A5C; text-wrap: balance;">Universities and TAFEs sit next to industry and employment services. Almost nothing crosses between them.</h1>
+      <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 52px; line-height: 1.06; letter-spacing: -0.022em; color: #1B3A5C; text-wrap: balance;">Universities and TAFEs sit next to industry and employment services. Almost nothing crosses between them.</h1>
       <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #23262b; max-width: 620px; text-wrap: pretty;">SkillsJewels builds the operational bridge — turning employment services caseloads, workplace learning and new product ideas into claimable, credentialed, countable outcomes for public tertiary providers.</p>
       <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
         <a href="#areas" class="btn btn-primary sj-cta" style="background: #1B3A5C; color: #F7F5F0; border: none; font-family: 'Public Sans', Arial, sans-serif; font-weight: 600; font-size: 15px; padding: 14px 24px;" style-hover="background: #14293f;">See the three areas</a>
         <a href="#contact" style="font-size: 15px; color: #5B3A73; text-decoration: none; border-bottom: 1px solid rgba(91,58,115,0.4); padding-bottom: 2px;">Get in touch</a>
       </div>
     </div>
-    <div class="blueprint" style="padding: 30px 28px; background: transparent; border-color: rgba(27,58,92,0.3); display: flex; flex-direction: column; gap: 22px;">
-      <i class="corner tl" style="color: rgba(27,58,92,0.55)"></i><i class="corner tr" style="color: rgba(27,58,92,0.55)"></i><i class="corner bl" style="color: rgba(27,58,92,0.55)"></i><i class="corner br" style="color: rgba(27,58,92,0.55)"></i>
-      <div>
-        <p style="margin: 0 0 6px; font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; color: #1B3A5C;">Employment Services</p>
-        <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #23262b;">800,000+ people on employment services caseloads, turned into claimable enrolments counted against Universities Accord equity targets.</p>
-      </div>
-      <div style="height: 1px; background: rgba(27,58,92,0.18);"></div>
-      <div>
-        <p style="margin: 0 0 6px; font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; color: #0B5D3B;">Workforce Development</p>
-        <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #23262b;">Post-experience microcredentials designed with industry, backed by university-grade assessment.</p>
-      </div>
-      <div style="height: 1px; background: rgba(27,58,92,0.18);"></div>
-      <div>
-        <p style="margin: 0 0 6px; font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; color: #5B3A73;">Product Consulting</p>
-        <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #23262b;">Advisory for new products at the intersection of education, industry and employment. Being shaped now.</p>
-      </div>
-    </div>
   </header>
+  <img src="assets/hero.jpg" alt="A trainee in hi-vis and her trainer share a laugh over a wiring task in a TAFE workshop" class="sj-hero-photo" style="width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 72% 40%;">
+  </div>
 
   <section id="areas" style="border-top: 1px solid rgba(27,58,92,0.2);">
     <div class="sj-section" style="max-width: 1160px; margin: 0 auto; padding: 72px 32px; display: flex; flex-direction: column; gap: 40px;">
