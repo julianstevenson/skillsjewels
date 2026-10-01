@@ -77,5 +77,5 @@ Commit in small, single-purpose commits. This site has no tests and no build, so
 - `CNAME` reads `www.julianstevenson.com`, not `skillsjewels.com.au`. Every canonical/OG URL, `robots.txt` and `sitemap.xml` carries a `TODO` pointing at this — when the domain moves, all of them need the swap, not just `CNAME`.
 - Nothing on any page links to the flier.
 - `product-consulting.html` is a placeholder — copy, `noindex` and sitemap exclusion all need revisiting once that proposition is shaped.
-- `og:image` on every page points at `assets/favicon.png`, which is 32×32 — far short of the ~1200×630 social platforms want. Link previews will look thin until a real share image exists.
+- `index.html` uses `assets/share.jpg` (1200×630, cropped from the hero photo) as its `og:image`/`twitter:image`. The other three pages still point at `assets/favicon.png`, which is 32×32 — their link previews will look thin until they get a share image.
 - `assets/hero.jpg` (home page hero) is AI-generated (Gemini). The generator put TAFE NSW logos and garbled name badges into the scene; they were blurred out before publishing. Any replacement image needs the same check — no real organisation's branding, no fake names.

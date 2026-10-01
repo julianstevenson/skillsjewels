@@ -148,7 +148,7 @@ Each page carries its own `<title>`, meta description, canonical link, and Open 
 
 Every page's canonical/OG URL, plus `robots.txt` and `sitemap.xml`, point at `https://www.julianstevenson.com/…` and carry a `TODO` comment to that effect — see the CNAME item under Known outstanding in `CLAUDE.md`. When the domain changes, all of these need updating together, not just `CNAME`.
 
-`og:image` on every page is currently `assets/favicon.png`, which is 32×32. It renders, but it's well under the ~1200×630 that Facebook/LinkedIn/Slack want for a real link-preview card — treat it as a placeholder until a proper share image exists.
+`index.html` uses `assets/share.jpg` as its `og:image` and `twitter:image` — a 1200×630 crop of the hero photo, with a `summary_large_image` Twitter card. The other three pages still use `assets/favicon.png`, which is 32×32. It renders, but it's well under the ~1200×630 that Facebook/LinkedIn/Slack want for a real link-preview card — treat it as a placeholder on those pages.
 
 ---
 
