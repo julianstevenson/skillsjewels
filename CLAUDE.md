@@ -4,16 +4,17 @@ Context for Claude Code working in this repository. Read `README.md` for the ful
 
 ## What this is
 
-The SkillsJewels marketing site. Four static pages, no build step, no framework beyond a runtime shim. Deployed by GitHub Pages from the branch root.
+The SkillsJewels marketing site. A handful of static pages, no build step, no framework beyond a runtime shim. Deployed by GitHub Pages from the branch root.
 
 | Page | File | Covers |
 |---|---|---|
 | Home | `index.html` | Hub page — the shared thesis, three summary cards, general enquiry form. This is the site's entry point. |
 | Employment Services | `employment-services.html` | The original proposition: ~800,000 people sit on employment services caseloads across Workforce Australia, IEA, RAES and Transition to Work, that population is overwhelmingly equity-relevant, and almost none of it is counted toward the Universities Accord's attainment and equity targets. |
-| Workforce Development | `workforce-development.html` | Post-experience microcredentials designed with industry, delivered through university partners — the link between industry upskilling and a recognised, stackable qualification. |
+| Tertiary Education | `tertiary-education.html` | Industry page for universities and TAFEs: post-experience microcredentials designed with industry, assessed by the provider, stacking toward an award. Built from the Workforce Development content, which it replaces. |
+| Workforce Development | `workforce-development.html` | *Being retired:* its content now lives on Tertiary Education. It's out of the menu, and becomes a redirect stub to `tertiary-education.html` in stage 5. |
 | Product Consulting | `product-consulting.html` | Placeholder — the proposition isn't shaped yet. Deliberately thin, and `noindex`ed until it is. |
 
-All four, plus `privacy.html`, share one nav and one footer rendered by `site-chrome.js` (see below), and the same brand and layout conventions. `SkillsJewels Flier.dc.html` is a separate print artefact, not part of this set.
+All of them, plus `privacy.html`, share one nav and one footer rendered by `site-chrome.js` (see below), and the same brand and layout conventions. `SkillsJewels Flier.dc.html` is a separate print artefact, not part of this set.
 
 ## Rules that matter
 
@@ -32,6 +33,8 @@ All four, plus `privacy.html`, share one nav and one footer rendered by `site-ch
 **`site.css` overrides `#dc-root`'s height.** `support.js` sets `#dc-root` to `height: 100%`. With the footer after it, that would make the footer overlap the page, so `site.css` sets it back to `auto`. Don't remove that rule.
 
 **Google Analytics is set up in `site-chrome.js`.** The GA4 Measurement ID is the `GA_MEASUREMENT_ID` constant at the top. While it's the `G-XXXXXXXXXX` placeholder, gtag.js isn't loaded. Consent Mode v2 is on: analytics storage granted, all ad storage, signals and personalisation denied. Events: `generate_lead` (fired in each page's form success branch through `window.sjTrack`), `cta_click`, `nav_click` and `contact_email_click` (all from one delegated click listener). Mark `generate_lead` as a key event in GA4. `privacy.html` describes what GA collects. Keep it in step if the GA setup changes.
+
+**Industry and Services pages follow one template.** Employment Services and Tertiary Education are the reference. In order: a breadcrumb (`.sj-crumbs`), a two-column hero with a `.blueprint` evidence panel, `#why` (problem on the left, "What SkillsJewels does" with four numbered steps on the right), `#related` ("Where this connects", three `.blueprint` cards in `.sj-related`, with an unbuilt page shown as a muted card with a Soon badge), `#enquire` (the dark form band), then the page note. Build a new page by copying one of the two and replacing the content, not by designing a new layout. When a related page goes live, swap its muted card for a linked one on every page that lists it.
 
 **The flier is not responsive, deliberately.** It's an A4 print artefact.
 
@@ -80,6 +83,7 @@ Commit in small, single-purpose commits. This site has no tests and no build, so
 - The flier still has its export filename, `SkillsJewels Flier.dc.html`. Renaming it to `flier.html` is safe — nothing links to it.
 - `CNAME` reads `www.julianstevenson.com`, not `skillsjewels.com.au`. Every canonical/OG URL, `robots.txt` and `sitemap.xml` carries a `TODO` pointing at this — when the domain moves, all of them need the swap, not just `CNAME`.
 - Nothing on any page links to the flier.
+- `workforce-development.html` duplicates Tertiary Education's content until it's replaced by a redirect stub (meta refresh + canonical to `tertiary-education.html`). The home page cards still link to it until stage 4.
 - `product-consulting.html` is a placeholder — copy, `noindex` and sitemap exclusion all need revisiting once that proposition is shaped.
 - `index.html` uses `assets/share.jpg` (1200×630, cropped from the hero photo) as its `og:image`/`twitter:image`. The other three pages still point at `assets/favicon.png`, which is 32×32 — their link previews will look thin until they get a share image.
 - `assets/hero.jpg` (home page hero) is AI-generated (Gemini). The generator put TAFE NSW logos and garbled name badges into the scene; they were blurred out before publishing. Any replacement image needs the same check — no real organisation's branding, no fake names.

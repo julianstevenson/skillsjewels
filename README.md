@@ -18,10 +18,11 @@ Four pages, no build step, no backend beyond a hosted form relay.
 |---|---|
 | `index.html` | The homepage — the shared thesis across all three propositions, three summary cards linking out, a general enquiry form. Site entry point. |
 | `employment-services.html` | The Employment Services proposition — hero, the gap, the four-step model (Translate, Package, Connect, Count), enquiry form. This was the original `index.html`, renamed when the site went multi-page. |
+| `tertiary-education.html` | The Tertiary Education industry page, on the standard Industry/Services template: breadcrumb, hero + evidence panel, `#why` (Design, Embed, Credential, Stack), `#related`, enquiry form. Built from the Workforce Development content, reframed for universities and TAFEs. |
 | `workforce-development.html` | The Workforce Development proposition — university/industry post-experience microcredentials, the four-step model (Design, Embed, Credential, Stack), enquiry form. |
 | `product-consulting.html` | Placeholder for the Product Consulting proposition. Deliberately thin; `noindex`ed until it has real content. |
 | `SkillsJewels Flier.dc.html` | A one-page A4 flier for the Employment Services proposition, built to print or export to PDF. Still carries the export filename — see Deploying |
-| `sitemap.xml` | Lists the three indexable pages (home, Employment Services, Workforce Development). `product-consulting.html` is left out while it's `noindex` |
+| `sitemap.xml` | Lists the indexable pages (home, Employment Services, Tertiary Education, Workforce Development until it's redirected). `product-consulting.html` is left out while it's `noindex` |
 | `robots.txt` | Allows all crawlers, points at `sitemap.xml` |
 | `assets/` | Logo SVGs — horizontal lockup and mark, each in standard and reversed |
 | `_ds/industry-…/` | The "Industry" design system the pages were generated against: `styles.css`, token manifest, lint config |
