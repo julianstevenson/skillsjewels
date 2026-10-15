@@ -17,7 +17,7 @@ Static pages, no build step, no backend beyond a hosted form relay.
 
 | Path | What it is |
 |---|---|
-| `index.html` | The homepage: the shared thesis, "Where we work" with Industries and Services card rows linking out, and a general enquiry form. Site entry point. |
+| `index.html` | The homepage: "Product thinking for the systems that train people, employ them and equip them", with a proof line and named product experience, then "Where we work" with Industries and Services card rows linking out, and a general enquiry form. Site entry point. |
 | `about.html` | About SkillsJewels: why it exists, how it works, and the three industries. Draft copy, `noindex` |
 | `contact.html` | The general enquiry form as a page of its own, with subject "SkillsJewels — Contact page enquiry". The default CTA target for pages without their own form |
 | `employment-services.html` | The Employment Services proposition — hero, the gap, the four-step model (Translate, Package, Connect, Count), enquiry form. This was the original `index.html`, renamed when the site went multi-page. |
