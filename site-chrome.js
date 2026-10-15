@@ -60,7 +60,7 @@
       label: 'Industries',
       items: [
         { name: 'Employment Services', href: 'employment-services.html', desc: 'Turn employment services caseloads into enrolments that count toward Accord targets.' },
-        { name: 'Tertiary Education' },
+        { name: 'Tertiary Education', href: 'tertiary-education.html', desc: 'Microcredentials designed with industry, assessed by your institution, stacking toward an award.' },
         { name: 'Digital' }
       ]
     },
