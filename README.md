@@ -19,6 +19,8 @@ Four pages, no build step, no backend beyond a hosted form relay.
 | `index.html` | The homepage — the shared thesis across all three propositions, three summary cards linking out, a general enquiry form. Site entry point. |
 | `employment-services.html` | The Employment Services proposition — hero, the gap, the four-step model (Translate, Package, Connect, Count), enquiry form. This was the original `index.html`, renamed when the site went multi-page. |
 | `tertiary-education.html` | The Tertiary Education industry page, on the standard Industry/Services template: breadcrumb, hero + evidence panel, `#why` (Design, Embed, Credential, Stack), `#related`, enquiry form. Built from the Workforce Development content, reframed for universities and TAFEs. |
+| `digital.html` | The Digital industry page: product strategy, teams and operating models for tech businesses. Draft copy, `noindex` |
+| `product-strategy.html`, `product-development.html`, `advisory-services.html` | The three Services pages, for any organisation, on the same template. Section 4 reads "When you need this" / "How the engagement runs". Draft copy, `noindex` |
 | `workforce-development.html` | The Workforce Development proposition — university/industry post-experience microcredentials, the four-step model (Design, Embed, Credential, Stack), enquiry form. |
 | `product-consulting.html` | Placeholder for the Product Consulting proposition. Deliberately thin; `noindex`ed until it has real content. |
 | `SkillsJewels Flier.dc.html` | A one-page A4 flier for the Employment Services proposition, built to print or export to PDF. Still carries the export filename — see Deploying |
