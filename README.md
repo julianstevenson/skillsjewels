@@ -25,6 +25,9 @@ Four pages, no build step, no backend beyond a hosted form relay.
 | `robots.txt` | Allows all crawlers, points at `sitemap.xml` |
 | `assets/` | Logo SVGs — horizontal lockup and mark, each in standard and reversed |
 | `_ds/industry-…/` | The "Industry" design system the pages were generated against: `styles.css`, token manifest, lint config |
+| `site-chrome.js` | Shared nav, footer and Google Analytics (GA4) setup for every page. See Navigation and Analytics |
+| `site.css` | Styles for the shared nav and footer only |
+| `privacy.html` | Privacy notice: what GA4 and the enquiry form collect. `noindex`, not in the sitemap |
 | `support.js` | Claude Design runtime — parses the `<x-dc>` template and its logic block, renders via React |
 | `doc-page.js` | Paged-document shell used by the flier for A4 pagination |
 | `uploads/logo-….zip` | Original logo delivery (PNG + SVG in all variants, including stacked lockups not used on the site) |
@@ -33,7 +36,11 @@ Four pages, no build step, no backend beyond a hosted form relay.
 
 ### Navigation
 
-All four pages share the same nav: the logo links to `index.html`, three text links go to each proposition page (the current page's link is marked active by hand — bold plus a bottom border), and a CTA button on the right. On the three pages with a real enquiry form, the CTA scrolls to it (`#enquire` or `#contact`); on `product-consulting.html`, which has no form, it scrolls to a `mailto:` block instead. There's no shared nav component — it's the same markup pasted into each file, consistent with how styling works on this site (see Editing, below).
+Every page shares one nav and one footer, rendered by `site-chrome.js` into two placeholders: `<div id="site-nav">` right after `<body>`, and `<div id="site-footer">` right after `</x-dc>`. Both sit outside `<x-dc>` because `support.js` swaps `<x-dc>` for a React root. Their styles are in `site.css`, the one shared stylesheet, which covers the chrome only.
+
+The nav has an Industries dropdown, a Services dropdown, About and Contact, plus the logo (home) and a CTA. The CTA's target comes from each page's `data-cta-href` (`#enquire`, `#contact`, or `index.html#contact`). Pages that don't exist yet are listed with a "Soon" badge and aren't clickable. Edit the `MENU` object in `site-chrome.js` to add one. Contact points at the home page form until `contact.html` exists. At ≤900px the links collapse behind a Menu button. At ≤560px the CTA shortens to "Book a call".
+
+The footer is a Sapphire band with brand, Industries, Services and Company columns, then an Acknowledgement of Country, the copyright line and a Privacy link. Each page's old one-line footer is now an `<aside class="sj-page-note">` that holds only the page's own note, such as the figures source.
 
 `uploads/` is an export leftover, but worth keeping — it holds the stacked lockups and the PNG sizes down to 16px, which the site itself doesn't use but a favicon or deck will.
 
@@ -99,7 +106,7 @@ Send one test submission from the live domain after any change to the form or th
 
 ## Editing
 
-The pages carry their styling inline and override the Industry design system's tokens in a `<style>` block in each `<helmet>`. If you change a colour, change it in all four pages — none of them share a stylesheet of their own. The nav markup is likewise pasted into each file rather than shared; see Navigation, above.
+The pages carry their styling inline and override the Industry design system's tokens in a `<style>` block in each `<helmet>`. If you change a colour, change it in every page, plus `site.css` for the nav and footer. Page content doesn't share a stylesheet. The nav and footer are the exception, see Navigation, above.
 
 Brand values used across all four pages:
 
@@ -122,12 +129,12 @@ Every page sets layout in inline `style` attributes, and inline styles beat clas
 
 | Width | What changes |
 |---|---|
-| ≤900px | Two-column sections collapse to one; padding and heading sizes come down; the nav's own gap and logo width shrink a step (`.sj-nav`, `.sj-logo`) |
-| ≤560px | Nav text links hide (logo and CTA stay), paired form fields stack, CTAs go full width, inputs go to 16px so iOS doesn't zoom the page on focus |
+| ≤900px | Two-column sections collapse to one; padding and heading sizes come down |
+| ≤560px | Paired form fields stack, CTAs go full width, inputs go to 16px so iOS doesn't zoom the page on focus |
 
-Between those two breakpoints the nav also carries a `flex-wrap` fallback of its own: if a page's three nav links plus the CTA ever get too tight for the row (a long CTA label, a narrow custom viewport), the row wraps to a second line instead of overflowing. This isn't a named breakpoint — it just protects the space between the two above.
+The shared nav and footer have their own breakpoints at the same widths, in `site.css` (see Navigation, above).
 
-If you add a new two-column section, give its wrapper `class="sj-split"` or it will stay two-column on a phone. If you add a fifth page, its `<style>` block needs the same three rule sets (`sj-split`/`sj-section`/`sj-hero`/`sj-nav`/`sj-logo` at ≤900px, the ≤560px block) or it won't behave like the rest of the site.
+If you add a new two-column section, give its wrapper `class="sj-split"` or it will stay two-column on a phone. If you add a fifth page, its `<style>` block needs the same three rule sets (`sj-split`/`sj-section`/`sj-hero` at ≤900px, the ≤560px block) or it won't behave like the rest of the site.
 
 The flier is deliberately not responsive. It is an A4 print artefact, not a page anyone reads on a phone.
 
@@ -149,6 +156,25 @@ Each page carries its own `<title>`, meta description, canonical link, and Open 
 Every page's canonical/OG URL, plus `robots.txt` and `sitemap.xml`, point at `https://www.julianstevenson.com/…` and carry a `TODO` comment to that effect — see the CNAME item under Known outstanding in `CLAUDE.md`. When the domain changes, all of these need updating together, not just `CNAME`.
 
 `index.html` uses `assets/share.jpg` as its `og:image` and `twitter:image` — a 1200×630 crop of the hero photo, with a `summary_large_image` Twitter card. The other three pages still use `assets/favicon.png`, which is 32×32. It renders, but it's well under the ~1200×630 that Facebook/LinkedIn/Slack want for a real link-preview card — treat it as a placeholder on those pages.
+
+---
+
+## Analytics
+
+Google Analytics 4 is set up once, in `site-chrome.js`, so it reaches every page that loads that script.
+
+- **Measurement ID:** the `GA_MEASUREMENT_ID` constant at the top of `site-chrome.js`. While it reads `G-XXXXXXXXXX`, gtag.js is not loaded and events only go to a local `dataLayer`.
+- **Consent:** Consent Mode v2 defaults. `analytics_storage` is granted, while `ad_storage`, `ad_user_data` and `ad_personalization` are denied. Google Signals and ad personalisation are off.
+- **Events:**
+
+| Event | Fires when | Parameters |
+|---|---|---|
+| `generate_lead` | Web3Forms confirms an enquiry (each page's form success branch calls `window.sjTrack`) | `form_page`, `scope` |
+| `cta_click` | A primary CTA is clicked: nav, footer or in-page | `cta_location`, `link_text` |
+| `nav_click` | A nav or footer link is clicked | `menu`, `link_text` |
+| `contact_email_click` | A `mailto:` link is clicked | `form_page` |
+
+Mark `generate_lead` as a key event in the GA4 admin so enquiries count as conversions. To check that events arrive, use GA4's DebugView with the Google Analytics Debugger extension, or run `dataLayer` in the browser console.
 
 ---
 
