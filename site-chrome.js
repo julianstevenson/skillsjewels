@@ -61,15 +61,15 @@
       items: [
         { name: 'Employment Services', href: 'employment-services.html', desc: 'Turn employment services caseloads into enrolments that count toward Accord targets.' },
         { name: 'Tertiary Education', href: 'tertiary-education.html', desc: 'Microcredentials designed with industry, assessed by your institution, stacking toward an award.' },
-        { name: 'Digital' }
+        { name: 'Digital', href: 'digital.html', desc: 'Product strategy, teams and operating models for tech businesses that have outgrown founder judgement.' }
       ]
     },
     services: {
       label: 'Services',
       items: [
-        { name: 'Product Strategy' },
-        { name: 'Product Development' },
-        { name: 'Advisory Services' }
+        { name: 'Product Strategy', href: 'product-strategy.html', desc: 'Decide what to build, for whom, and what to stop doing, with measures leaders hold themselves to.' },
+        { name: 'Product Development', href: 'product-development.html', desc: 'Take a product from agreed direction to working software, with a team set up to keep going.' },
+        { name: 'Advisory Services', href: 'advisory-services.html', desc: 'Senior product counsel for leadership teams, boards and investors, retained or for a single decision.' }
       ]
     },
     about: { name: 'About' },
