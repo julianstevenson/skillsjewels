@@ -30,7 +30,7 @@
 <script src="./support.js"></script>
 </head>
 <body>
-<div id="site-nav" data-cta-href="#enquire"><noscript><p class="sjc-noscript"><a href="index.html">Home</a><a href="employment-services.html">Employment Services</a><a href="workforce-development.html">Workforce Development</a><a href="index.html#contact">Contact</a><a href="privacy.html">Privacy</a></p></noscript></div>
+<div id="site-nav" data-cta-href="#enquire"><noscript><p class="sjc-noscript"><a href="index.html">Home</a><a href="employment-services.html">Employment Services</a><a href="tertiary-education.html">Tertiary Education</a><a href="index.html#contact">Contact</a><a href="privacy.html">Privacy</a></p></noscript></div>
 <x-dc>
 <helmet>
   <link rel="icon" type="image/svg+xml" href="assets/SkillsJewels_Mark.svg">
@@ -60,9 +60,11 @@
       .sj-section { padding: 56px 32px !important; }
       .sj-hero h1 { font-size: 44px !important; }
       .sj-section h2 { font-size: 28px !important; }
+      .sj-related { grid-template-columns: 1fr !important; gap: 20px !important; }
     }
 
     @media (max-width: 560px) {
+      .sj-crumbs { padding: 16px 20px 0 !important; }
       .sj-section { padding: 40px 20px !important; }
       .sj-split { gap: 32px !important; }
       .sj-form-row { grid-template-columns: 1fr !important; }
@@ -74,14 +76,18 @@
 <div style="background: #F7F5F0; color: #1B3A5C; font-family: 'Public Sans', Arial, sans-serif; min-height: 100%;">
 
 
-  <header class="sj-section sj-hero sj-split" style="max-width: 1160px; margin: 0 auto; padding: 88px 32px 72px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 72px; align-items: start;">
+  <nav aria-label="Breadcrumb" class="sj-crumbs" style="max-width: 1160px; margin: 0 auto; padding: 24px 32px 0; font-size: 13px; letter-spacing: 0.02em; color: rgba(27,58,92,0.7);">
+    <a href="index.html" style="color: #5B3A73; text-decoration: none;">Home</a><span aria-hidden="true" style="margin: 0 8px; color: rgba(27,58,92,0.45);">›</span><span>Industries</span><span aria-hidden="true" style="margin: 0 8px; color: rgba(27,58,92,0.45);">›</span><span aria-current="page" style="color: #1B3A5C; font-weight: 600;">Employment Services</span>
+  </nav>
+
+  <header class="sj-section sj-hero sj-split" style="max-width: 1160px; margin: 0 auto; padding: 56px 32px 72px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 72px; align-items: start;">
     <div style="display: flex; flex-direction: column; gap: 26px;">
       <p style="margin: 0; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(27,58,92,0.7);">CONNECTING TERTIARY EDUCATION AND EMPLOYMENT SERVICES</p>
       <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 60px; line-height: 1.04; letter-spacing: -0.022em; color: #1B3A5C; text-wrap: balance;">Your equity targets are sitting in someone else's caseload.</h1>
       <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #23262b; max-width: 620px; text-wrap: pretty;">SkillsJewels is the bridge between tertiary education and employment services. We make public providers into operational, claimable training partners inside Australia's reformed employment services system — and get the resulting enrolments counted where your targets are measured.</p>
       <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
         <a href="#enquire" class="btn btn-primary sj-cta" style="background: #1B3A5C; color: #F7F5F0; border: none; font-family: 'Public Sans', Arial, sans-serif; font-weight: 600; font-size: 15px; padding: 14px 24px;" style-hover="background: #14293f;">Book a 30-minute scoping call</a>
-        <a href="#gap" style="font-size: 15px; color: #5B3A73; text-decoration: none; border-bottom: 1px solid rgba(91,58,115,0.4); padding-bottom: 2px;">Read why the gap persists</a>
+        <a href="#why" style="font-size: 15px; color: #5B3A73; text-decoration: none; border-bottom: 1px solid rgba(91,58,115,0.4); padding-bottom: 2px;">Read why the gap persists</a>
       </div>
     </div>
     <div class="blueprint" style="padding: 30px 28px; background: transparent; border-color: rgba(27,58,92,0.3); display: flex; flex-direction: column; gap: 22px;">
@@ -103,7 +109,7 @@
     </div>
   </header>
 
-  <section id="gap" style="border-top: 1px solid rgba(27,58,92,0.2);">
+  <section id="why" style="border-top: 1px solid rgba(27,58,92,0.2);">
     <div class="sj-section sj-split" style="max-width: 1160px; margin: 0 auto; padding: 72px 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start;">
       <div style="display: flex; flex-direction: column; gap: 18px;">
         <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 34px; line-height: 1.15; letter-spacing: -0.015em; color: #1B3A5C;">Why the gap persists</h2>
@@ -122,6 +128,33 @@
           <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #23262b;"><strong style="color:#1B3A5C;">Connect.</strong> Introduce and then operate the referral relationships with the providers holding the caseload in your catchment.</p>
           <span style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 15px; color: #5B3A73;">04</span>
           <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #23262b;"><strong style="color:#1B3A5C;">Count.</strong> Get the resulting enrolments recorded against your equity and attainment reporting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="related" style="border-top: 1px solid rgba(27,58,92,0.2);">
+    <div class="sj-section" style="max-width: 1160px; margin: 0 auto; padding: 64px 32px 72px; display: flex; flex-direction: column; gap: 32px;">
+      <h2 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 34px; line-height: 1.15; letter-spacing: -0.015em; color: #1B3A5C;">Where this connects</h2>
+      <div class="sj-related" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+        <div class="blueprint" style="padding: 26px 24px; background: transparent; border-color: rgba(27,58,92,0.3); display: flex; flex-direction: column; gap: 12px;">
+          <i class="corner tl" style="color: rgba(27,58,92,0.55)"></i><i class="corner tr" style="color: rgba(27,58,92,0.55)"></i><i class="corner bl" style="color: rgba(27,58,92,0.55)"></i><i class="corner br" style="color: rgba(27,58,92,0.55)"></i>
+          <p style="margin: 0; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(27,58,92,0.7);">Industry</p>
+          <h3 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 22px; line-height: 1.2; color: #1B3A5C;">Tertiary Education</h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #23262b;">Post-experience microcredentials designed with industry, assessed by your institution, stacking toward an award.</p>
+          <a href="tertiary-education.html" style="font-size: 14px; color: #5B3A73; text-decoration: none; border-bottom: 1px solid rgba(91,58,115,0.4); padding-bottom: 2px; margin-top: auto; align-self: flex-start;">Explore Tertiary Education →</a>
+        </div>
+        <div class="blueprint" style="padding: 26px 24px; background: transparent; border-color: rgba(27,58,92,0.18); display: flex; flex-direction: column; gap: 12px;">
+          <i class="corner tl" style="color: rgba(27,58,92,0.3)"></i><i class="corner tr" style="color: rgba(27,58,92,0.3)"></i><i class="corner bl" style="color: rgba(27,58,92,0.3)"></i><i class="corner br" style="color: rgba(27,58,92,0.3)"></i>
+          <p style="margin: 0; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(27,58,92,0.7);">Service</p>
+          <h3 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 22px; line-height: 1.2; color: rgba(27,58,92,0.55);">Advisory Services<span style="display: inline-block; margin-left: 8px; font-family: 'Public Sans', Arial, sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(27,58,92,0.55); border: 1px solid rgba(27,58,92,0.25); padding: 1px 5px; vertical-align: 4px;">Soon</span></h3>
+          <p style="margin: 0; font-size: 14px; line-height: 1.55; color: rgba(35,38,43,0.6);">Page coming soon.</p>
+        </div>
+        <div class="blueprint" style="padding: 26px 24px; background: transparent; border-color: rgba(27,58,92,0.18); display: flex; flex-direction: column; gap: 12px;">
+          <i class="corner tl" style="color: rgba(27,58,92,0.3)"></i><i class="corner tr" style="color: rgba(27,58,92,0.3)"></i><i class="corner bl" style="color: rgba(27,58,92,0.3)"></i><i class="corner br" style="color: rgba(27,58,92,0.3)"></i>
+          <p style="margin: 0; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(27,58,92,0.7);">Service</p>
+          <h3 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 22px; line-height: 1.2; color: rgba(27,58,92,0.55);">Product Strategy<span style="display: inline-block; margin-left: 8px; font-family: 'Public Sans', Arial, sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(27,58,92,0.55); border: 1px solid rgba(27,58,92,0.25); padding: 1px 5px; vertical-align: 4px;">Soon</span></h3>
+          <p style="margin: 0; font-size: 14px; line-height: 1.55; color: rgba(35,38,43,0.6);">Page coming soon.</p>
         </div>
       </div>
     </div>
