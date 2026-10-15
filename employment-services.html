@@ -25,9 +25,12 @@
 <meta name="twitter:description" content="SkillsJewels turns Australia's 800,000+ employment services caseload into claimable enrolments, counted against Universities Accord equity targets.">
 <meta name="twitter:image" content="https://www.julianstevenson.com/assets/favicon.png">
 
+<link rel="stylesheet" href="site.css">
+<script src="./site-chrome.js" defer></script>
 <script src="./support.js"></script>
 </head>
 <body>
+<div id="site-nav" data-cta-href="#enquire"><noscript><p class="sjc-noscript"><a href="index.html">Home</a><a href="employment-services.html">Employment Services</a><a href="workforce-development.html">Workforce Development</a><a href="index.html#contact">Contact</a><a href="privacy.html">Privacy</a></p></noscript></div>
 <x-dc>
 <helmet>
   <link rel="icon" type="image/svg+xml" href="assets/SkillsJewels_Mark.svg">
@@ -57,12 +60,9 @@
       .sj-section { padding: 56px 32px !important; }
       .sj-hero h1 { font-size: 44px !important; }
       .sj-section h2 { font-size: 28px !important; }
-      .sj-nav { gap: 18px !important; }
-      .sj-logo { width: 160px !important; }
     }
 
     @media (max-width: 560px) {
-      .sj-nav-link { display: none !important; }
       .sj-section { padding: 40px 20px !important; }
       .sj-split { gap: 32px !important; }
       .sj-form-row { grid-template-columns: 1fr !important; }
@@ -73,17 +73,6 @@
 </helmet>
 <div style="background: #F7F5F0; color: #1B3A5C; font-family: 'Public Sans', Arial, sans-serif; min-height: 100%;">
 
-  <nav style="border-bottom: 1px solid rgba(27,58,92,0.2); background: #F7F5F0;">
-    <div class="sj-nav" style="max-width: 1160px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; row-gap: 10px;">
-      <a href="index.html" style="display: block; margin-right: auto;">
-        <img src="assets/SkillsJewels_Lockup_Horizontal.svg" alt="SkillsJewels" class="sj-logo" style="width: 196px; height: auto; display: block;">
-      </a>
-      <a href="employment-services.html" class="sj-nav-link" style="font-size: 14px; letter-spacing: 0.02em; color: #1B3A5C; text-decoration: none; font-weight: 600; border-bottom: 2px solid #1B3A5C; padding-bottom: 2px;">Employment Services</a>
-      <a href="workforce-development.html" class="sj-nav-link" style="font-size: 14px; letter-spacing: 0.02em; color: #1B3A5C; text-decoration: none;">Workforce Development</a>
-      <a href="product-consulting.html" class="sj-nav-link" style="font-size: 14px; letter-spacing: 0.02em; color: #1B3A5C; text-decoration: none;">Product Consulting</a>
-      <a href="#enquire" class="btn btn-primary" style="background: #1B3A5C; color: #F7F5F0; border: none; font-family: 'Public Sans', Arial, sans-serif; font-weight: 600; font-size: 14px; padding: 11px 18px; letter-spacing: 0.01em; white-space: nowrap;" style-hover="background: #14293f;">Book a scoping call</a>
-    </div>
-  </nav>
 
   <header class="sj-section sj-hero sj-split" style="max-width: 1160px; margin: 0 auto; padding: 88px 32px 72px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 72px; align-items: start;">
     <div style="display: flex; flex-direction: column; gap: 26px;">
@@ -201,15 +190,15 @@
     </div>
   </section>
 
-  <footer style="border-top: 1px solid rgba(27,58,92,0.2);">
+  <aside class="sj-page-note" style="border-top: 1px solid rgba(27,58,92,0.2);">
     <div style="max-width: 1160px; margin: 0 auto; padding: 32px; display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
       <p style="margin: 0; font-style: italic; font-size: 12.5px; line-height: 1.5; color: rgba(27,58,92,0.62); max-width: 620px;">Figures: Australian Universities Accord Final Report, 2024 (attainment and equity targets); combined Workforce Australia, IEA/DES, RAES and Transition to Work caseloads.</p>
-      <p style="margin: 0; font-size: 12.5px; color: rgba(27,58,92,0.62);">SkillsJewels</p>
     </div>
-  </footer>
+  </aside>
 
 </div>
 </x-dc>
+<div id="site-footer"></div>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280}}">
 class Component extends DCLogic {
   state = { sent: false };
@@ -243,6 +232,7 @@ class Component extends DCLogic {
             if (!data || data.success !== true) throw new Error('Submission rejected');
             form.dataset.sending = 'false';
             this.setState({ sent: true });
+            if (window.sjTrack) window.sjTrack('generate_lead', { form_page: location.pathname.split('/').pop() || 'index.html', scope: payload.scope || '' });
           })
           .catch(() => {
             form.dataset.sending = 'false';
