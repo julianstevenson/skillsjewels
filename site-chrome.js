@@ -72,8 +72,8 @@
         { name: 'Advisory Services', href: 'advisory-services.html', desc: 'Senior product counsel for leadership teams, boards and investors, retained or for a single decision.' }
       ]
     },
-    about: { name: 'About' },
-    contact: { name: 'Contact', href: 'index.html#contact' }
+    about: { name: 'About', href: 'about.html' },
+    contact: { name: 'Contact', href: 'contact.html' }
   };
 
   var EMAIL = 'info@julianstevenson.com';
@@ -136,7 +136,7 @@
   }
 
   function renderNav(host) {
-    var ctaHref = host.getAttribute('data-cta-href') || 'index.html#contact';
+    var ctaHref = host.getAttribute('data-cta-href') || 'contact.html';
     host.className = 'sjc-nav';
     host.setAttribute('role', 'navigation');
     host.setAttribute('aria-label', 'Main');
@@ -274,7 +274,7 @@
   function boot() {
     var nav = document.getElementById('site-nav');
     var footer = document.getElementById('site-footer');
-    var ctaHref = (nav && nav.getAttribute('data-cta-href')) || 'index.html#contact';
+    var ctaHref = (nav && nav.getAttribute('data-cta-href')) || 'contact.html';
     if (nav) renderNav(nav);
     if (footer) renderFooter(footer, ctaHref);
     trackClicks();
