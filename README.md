@@ -16,7 +16,9 @@ Four pages, no build step, no backend beyond a hosted form relay.
 
 | Path | What it is |
 |---|---|
-| `index.html` | The homepage — the shared thesis across all three propositions, three summary cards linking out, a general enquiry form. Site entry point. |
+| `index.html` | The homepage: the shared thesis, "Where we work" with Industries and Services card rows linking out, and a general enquiry form. Site entry point. |
+| `about.html` | About SkillsJewels: why it exists, how it works, and the three industries. Draft copy, `noindex` |
+| `contact.html` | The general enquiry form as a page of its own, with subject "SkillsJewels — Contact page enquiry". The default CTA target for pages without their own form |
 | `employment-services.html` | The Employment Services proposition — hero, the gap, the four-step model (Translate, Package, Connect, Count), enquiry form. This was the original `index.html`, renamed when the site went multi-page. |
 | `tertiary-education.html` | The Tertiary Education industry page, on the standard Industry/Services template: breadcrumb, hero + evidence panel, `#why` (Design, Embed, Credential, Stack), `#related`, enquiry form. Built from the Workforce Development content, reframed for universities and TAFEs. |
 | `digital.html` | The Digital industry page: product strategy, teams and operating models for tech businesses. Draft copy, `noindex` |
@@ -24,7 +26,7 @@ Four pages, no build step, no backend beyond a hosted form relay.
 | `workforce-development.html` | The Workforce Development proposition — university/industry post-experience microcredentials, the four-step model (Design, Embed, Credential, Stack), enquiry form. |
 | `product-consulting.html` | Placeholder for the Product Consulting proposition. Deliberately thin; `noindex`ed until it has real content. |
 | `SkillsJewels Flier.dc.html` | A one-page A4 flier for the Employment Services proposition, built to print or export to PDF. Still carries the export filename — see Deploying |
-| `sitemap.xml` | Lists the indexable pages (home, Employment Services, Tertiary Education, Workforce Development until it's redirected). `product-consulting.html` is left out while it's `noindex` |
+| `sitemap.xml` | Lists the indexable pages (home, Employment Services, Tertiary Education, Contact, and Workforce Development until it's redirected). `product-consulting.html` is left out while it's `noindex` |
 | `robots.txt` | Allows all crawlers, points at `sitemap.xml` |
 | `assets/` | Logo SVGs — horizontal lockup and mark, each in standard and reversed |
 | `_ds/industry-…/` | The "Industry" design system the pages were generated against: `styles.css`, token manifest, lint config |
@@ -41,7 +43,7 @@ Four pages, no build step, no backend beyond a hosted form relay.
 
 Every page shares one nav and one footer, rendered by `site-chrome.js` into two placeholders: `<div id="site-nav">` right after `<body>`, and `<div id="site-footer">` right after `</x-dc>`. Both sit outside `<x-dc>` because `support.js` swaps `<x-dc>` for a React root. Their styles are in `site.css`, the one shared stylesheet, which covers the chrome only.
 
-The nav has an Industries dropdown, a Services dropdown, About and Contact, plus the logo (home) and a CTA. The CTA's target comes from each page's `data-cta-href` (`#enquire`, `#contact`, or `index.html#contact`). Pages that don't exist yet are listed with a "Soon" badge and aren't clickable. Edit the `MENU` object in `site-chrome.js` to add one. Contact points at the home page form until `contact.html` exists. At ≤900px the links collapse behind a Menu button. At ≤560px the CTA shortens to "Book a call".
+The nav has an Industries dropdown, a Services dropdown, About and Contact, plus the logo (home) and a CTA. The CTA's target comes from each page's `data-cta-href` (`#enquire`, `#contact`, or `contact.html`). Pages that don't exist yet are listed with a "Soon" badge and aren't clickable. Edit the `MENU` object in `site-chrome.js` to add one. At ≤900px the links collapse behind a Menu button. At ≤560px the CTA shortens to "Book a call".
 
 The footer is a Sapphire band with brand, Industries, Services and Company columns, then an Acknowledgement of Country, the copyright line and a Privacy link. Each page's old one-line footer is now an `<aside class="sj-page-note">` that holds only the page's own note, such as the figures source.
 
