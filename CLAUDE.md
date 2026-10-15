@@ -8,7 +8,9 @@ The SkillsJewels marketing site. A handful of static pages, no build step, no fr
 
 | Page | File | Covers |
 |---|---|---|
-| Home | `index.html` | Hub page — the shared thesis, three summary cards, general enquiry form. This is the site's entry point. |
+| Home | `index.html` | Hub page: the shared thesis, "Where we work" with three Industry cards and three Services cards, and a general enquiry form. This is the site's entry point. |
+| About | `about.html` | Why SkillsJewels exists, how we work, and links to the three industries. Not on the Industry/Services template's content model. *Draft copy, `noindex`.* No founder note yet. |
+| Contact | `contact.html` | The general enquiry form as the page's main content. The menu's Contact link and the chrome's default CTA point here. |
 | Employment Services | `employment-services.html` | The original proposition: ~800,000 people sit on employment services caseloads across Workforce Australia, IEA, RAES and Transition to Work, that population is overwhelmingly equity-relevant, and almost none of it is counted toward the Universities Accord's attainment and equity targets. |
 | Tertiary Education | `tertiary-education.html` | Industry page for universities and TAFEs: post-experience microcredentials designed with industry, assessed by the provider, stacking toward an award. Built from the Workforce Development content, which it replaces. |
 | Digital | `digital.html` | Industry page for tech businesses: product strategy, product teams and operating models. *Draft copy:* `noindex` and out of the sitemap until the wording is approved. |
@@ -87,8 +89,8 @@ Commit in small, single-purpose commits. This site has no tests and no build, so
 - The flier still has its export filename, `SkillsJewels Flier.dc.html`. Renaming it to `flier.html` is safe — nothing links to it.
 - `CNAME` reads `www.julianstevenson.com`, not `skillsjewels.com.au`. Every canonical/OG URL, `robots.txt` and `sitemap.xml` carries a `TODO` pointing at this — when the domain moves, all of them need the swap, not just `CNAME`.
 - Nothing on any page links to the flier.
-- `digital.html`, `product-strategy.html`, `product-development.html` and `advisory-services.html` carry draft copy and are `noindex, follow`. Each has a comment above its robots tag. Once the wording is approved, flip each to `index, follow` and add it to `sitemap.xml` at the same time.
-- `workforce-development.html` duplicates Tertiary Education's content until it's replaced by a redirect stub (meta refresh + canonical to `tertiary-education.html`). The home page cards still link to it until stage 4.
+- `about.html`, `digital.html`, `product-strategy.html`, `product-development.html` and `advisory-services.html` carry draft copy and are `noindex, follow`. Each has a comment above its robots tag. Once the wording is approved, flip each to `index, follow` and add it to `sitemap.xml` at the same time.
+- `workforce-development.html` duplicates Tertiary Education's content until it's replaced by a redirect stub (meta refresh + canonical to `tertiary-education.html`). Nothing in the menu or on the home page links to it any more.
 - `product-consulting.html` is a placeholder — copy, `noindex` and sitemap exclusion all need revisiting once that proposition is shaped.
 - `index.html` uses `assets/share.jpg` (1200×630, cropped from the hero photo) as its `og:image`/`twitter:image`. The other three pages still point at `assets/favicon.png`, which is 32×32 — their link previews will look thin until they get a share image.
 - `assets/hero.jpg` (home page hero) is AI-generated (Gemini). The generator put TAFE NSW logos and garbled name badges into the scene; they were blurred out before publishing. Any replacement image needs the same check — no real organisation's branding, no fake names.
