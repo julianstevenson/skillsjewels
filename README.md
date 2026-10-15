@@ -2,13 +2,14 @@
 
 Marketing site for SkillsJewels: the bridge between tertiary education and the rest of the system — employment services, industry, and the products in between.
 
-The site covers three propositions, one page each, summarised on a homepage:
+The site is organised into **Industries** (who SkillsJewels works with) and **Services** (what it does), plus About and Contact:
 
-- **Employment Services** (the original, most developed proposition). Around 800,000 people sit on employment services caseloads across Workforce Australia, Inclusive Employment Australia, RAES and Transition to Work. That population is overwhelmingly equity-relevant, and almost none of it is counted toward the Universities Accord's tertiary attainment and equity targets. SkillsJewels makes public tertiary providers into operational, claimable training partners inside the reformed system, and gets the resulting enrolments recorded where the targets are measured.
-- **Workforce Development.** Post-experience microcredentials designed with industry and delivered through university partners — real workplace projects, university-grade assessment, credit that stacks toward a recognised qualification.
-- **Product Consulting.** Not yet shaped — currently a placeholder page.
+- **Industries:** Employment Services (the original, most developed proposition), Tertiary Education and Digital.
+- **Services:** Product Strategy, Product Development and Advisory Services.
 
-Four pages, no build step, no backend beyond a hosted form relay.
+Employment Services background: around 800,000 people sit on employment services caseloads across Workforce Australia, Inclusive Employment Australia, RAES and Transition to Work. That population is overwhelmingly equity-relevant, and almost none of it is counted toward the Universities Accord's tertiary attainment and equity targets. SkillsJewels makes public tertiary providers into operational, claimable training partners inside the reformed system, and gets the resulting enrolments recorded where the targets are measured.
+
+Static pages, no build step, no backend beyond a hosted form relay.
 
 ---
 
@@ -23,8 +24,7 @@ Four pages, no build step, no backend beyond a hosted form relay.
 | `tertiary-education.html` | The Tertiary Education industry page, on the standard Industry/Services template: breadcrumb, hero + evidence panel, `#why` (Design, Embed, Credential, Stack), `#related`, enquiry form. Built from the Workforce Development content, reframed for universities and TAFEs. |
 | `digital.html` | The Digital industry page: product strategy, teams and operating models for tech businesses. Draft copy, `noindex` |
 | `product-strategy.html`, `product-development.html`, `advisory-services.html` | The three Services pages, for any organisation, on the same template. Section 4 reads "When you need this" / "How the engagement runs". Draft copy, `noindex` |
-| `workforce-development.html` | The Workforce Development proposition — university/industry post-experience microcredentials, the four-step model (Design, Embed, Credential, Stack), enquiry form. |
-| `product-consulting.html` | Placeholder for the Product Consulting proposition. Deliberately thin; `noindex`ed until it has real content. |
+| `workforce-development.html`, `product-consulting.html` | Redirect stubs to `tertiary-education.html` and `product-strategy.html`. Their content was folded into those pages |
 | `SkillsJewels Flier.dc.html` | A one-page A4 flier for the Employment Services proposition, built to print or export to PDF. Still carries the export filename — see Deploying |
 | `sitemap.xml` | Lists the indexable pages (home, Employment Services, Tertiary Education, Contact, and Workforce Development until it's redirected). `product-consulting.html` is left out while it's `noindex` |
 | `robots.txt` | Allows all crawlers, points at `sitemap.xml` |
@@ -147,20 +147,37 @@ The flier is deliberately not responsive. It is an A4 print artefact, not a page
 
 ## SEO
 
-Each page carries its own `<title>`, meta description, canonical link, and Open Graph/Twitter card tags — all in the real `<head>`, above `<script src="./support.js">`, not inside `<helmet>`. That's deliberate: `<helmet>` content is compiled into the document by `support.js` after the page's JS runs, but link-preview crawlers (Facebook, LinkedIn, Slack) don't execute JavaScript, so anything meant to control how a shared link looks has to already be in the HTML the server sends.
+Each page carries its own `<title>`, meta description, canonical link, Open Graph/Twitter card tags and JSON-LD structured data, all in the real `<head>` above `<script src="./support.js">`, not inside `<helmet>`. That's deliberate: `<helmet>` content is compiled into the document by `support.js` after the page's JS runs, but link-preview crawlers (Facebook, LinkedIn, Slack) don't execute JavaScript, so anything meant to control how a shared link looks has to already be in the HTML the server sends.
 
-| Page | Robots | In sitemap.xml |
-|---|---|---|
-| `index.html` | `index, follow` | Yes |
-| `employment-services.html` | `index, follow` | Yes |
-| `workforce-development.html` | `index, follow` | Yes |
-| `product-consulting.html` | `noindex, follow` | No |
+| Page | Robots | In sitemap.xml | Why |
+|---|---|---|---|
+| `index.html` | `index, follow` | Yes | |
+| `employment-services.html` | `index, follow` | Yes | |
+| `tertiary-education.html` | `index, follow` | Yes | |
+| `contact.html` | `index, follow` | Yes | |
+| `digital.html`, `product-strategy.html`, `product-development.html`, `advisory-services.html`, `about.html` | `noindex, follow` | No | Draft copy awaiting approval. Flip the robots tag and add to the sitemap together |
+| `privacy.html` | `noindex, follow` | No | Legal boilerplate |
+| `workforce-development.html`, `product-consulting.html` | `noindex, follow` | No | Redirect stubs |
 
-`product-consulting.html` is `noindex`ed on purpose — it's a thin placeholder, and indexing it now would just get a weak page ranked. Flip its `robots` meta to `index, follow` and add it to `sitemap.xml` once it has real content.
+**Structured data.** The home page declares the `Organization` (with `"@id": "https://www.julianstevenson.com/#organization"`). Every other page has a `BreadcrumbList` and a `WebPage`, `AboutPage` or `ContactPage` that points back to it. Services pages also declare a `Service`. Check a page with Google's [Rich Results Test](https://search.google.com/test/rich-results) after changing its JSON-LD.
+
+**Share images.** The home page uses `assets/share.jpg`, a 1200×630 crop of the hero photo. Every other page uses `assets/share-brand.jpg`: 1200×630, Sapphire, reversed lockup, tagline and blueprint corners. It was rendered from an HTML mock-up with headless Chrome. Industry pages will switch to crops of their own hero photos once they have them.
+
+**noscript fallback.** Each page repeats its h1 and intro in a `<noscript>` block after `#site-nav`, so crawlers that don't run JavaScript still see the page's core text.
+
+**Redirects.** GitHub Pages can't do server-side redirects, so `workforce-development.html` and `product-consulting.html` are stubs. Each is `noindex`, with a canonical pointing at its new page, a zero-second meta refresh, and `location.replace` to keep any `#anchor`.
 
 Every page's canonical/OG URL, plus `robots.txt` and `sitemap.xml`, point at `https://www.julianstevenson.com/…` and carry a `TODO` comment to that effect — see the CNAME item under Known outstanding in `CLAUDE.md`. When the domain changes, all of these need updating together, not just `CNAME`.
 
-`index.html` uses `assets/share.jpg` as its `og:image` and `twitter:image` — a 1200×630 crop of the hero photo, with a `summary_large_image` Twitter card. The other three pages still use `assets/favicon.png`, which is 32×32. It renders, but it's well under the ~1200×630 that Facebook/LinkedIn/Slack want for a real link-preview card — treat it as a placeholder on those pages.
+### Google Search Console setup
+
+Not done yet. It needs the site owner's Google account. If the domain is moving to `skillsjewels.com.au`, do that first, so Search Console doesn't build its history on the old one.
+
+1. In [Search Console](https://search.google.com/search-console), add a property. **Domain** (verified by a DNS TXT record) covers every subdomain and protocol. **URL prefix** (`https://www.julianstevenson.com/`) can instead be verified with an HTML meta tag. For that, paste the `google-site-verification` tag into `index.html`'s real `<head>`, not `<helmet>`, and push.
+2. Submit `https://www.julianstevenson.com/sitemap.xml` under Sitemaps.
+3. Link the property to the GA4 property (Search Console Settings → Associations), so search queries show in GA4.
+4. Use URL Inspection → Request indexing for the home page, Employment Services, Tertiary Education and Contact.
+5. When a draft page is approved and flipped to `index`, add it to `sitemap.xml` and request indexing for it.
 
 ---
 

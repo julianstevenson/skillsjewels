@@ -17,8 +17,7 @@ The SkillsJewels marketing site. A handful of static pages, no build step, no fr
 | Product Strategy | `product-strategy.html` | Service page, for any organisation: deciding what to build, for whom, and what to stop doing. *Draft copy, `noindex`.* |
 | Product Development | `product-development.html` | Service page: discovery, delivery and building the team, from agreed strategy to working software. *Draft copy, `noindex`.* |
 | Advisory Services | `advisory-services.html` | Service page: senior product counsel for leadership teams, boards and investors. *Draft copy, `noindex`.* |
-| Workforce Development | `workforce-development.html` | *Being retired:* its content now lives on Tertiary Education. It's out of the menu, and becomes a redirect stub to `tertiary-education.html` in stage 5. |
-| Product Consulting | `product-consulting.html` | Placeholder — the proposition isn't shaped yet. Deliberately thin, and `noindex`ed until it is. |
+| Redirect stubs | `workforce-development.html`, `product-consulting.html` | Old URLs, redirecting to Tertiary Education and Product Strategy. See SEO. |
 
 All of them, plus `privacy.html`, share one nav and one footer rendered by `site-chrome.js` (see below), and the same brand and layout conventions. `SkillsJewels Flier.dc.html` is a separate print artefact, not part of this set.
 
@@ -68,7 +67,15 @@ Figures on the site are indicative and need checking against current DEWR report
 
 ## SEO
 
-Every page carries its own title, meta description, canonical link, and Open Graph/Twitter card tags in the real `<head>` (not `<helmet>`) — Facebook, LinkedIn and Slack unfurlers don't execute JS, so anything meant for link previews has to be in the raw HTML, not compiled in at runtime. Keep title ≈60 chars, description ≈150-155 chars. `product-consulting.html` is intentionally `noindex, follow` and left out of `sitemap.xml` — it's a thin placeholder; flip it to `index` once it has real content, and add it back to the sitemap at the same time. `robots.txt` and `sitemap.xml` point at the same live domain as everything else — see the CNAME item under Known outstanding.
+Every page carries its own title, meta description, canonical link, Open Graph/Twitter card tags and JSON-LD in the real `<head>` (not `<helmet>`). Facebook, LinkedIn and Slack unfurlers don't execute JS, so anything meant for link previews has to be in the raw HTML, not compiled in at runtime. Keep titles to about 60 characters and descriptions to 150–155.
+
+- **Indexing:** a page is `index, follow` and in `sitemap.xml`, or `noindex, follow` and out of it, never a mix. Draft-copy pages, `privacy.html` and the redirect stubs are `noindex` (see README's SEO table).
+- **Structured data:** `index.html` has the `Organization` with `"@id": "…/#organization"`. Every other page has an `@graph` with a `BreadcrumbList` (Home › page) and a `WebPage`, `AboutPage` or `ContactPage` whose `publisher` points at that `@id`. Services pages add a `Service`. A new page copies the block and changes the names and URLs.
+- **Share images:** link previews use `assets/share-brand.jpg` (1200×630, `summary_large_image`) everywhere except the home page, which uses `assets/share.jpg`. Industry pages switch to a crop of their own hero photo once they have one.
+- **noscript fallback:** each page has a `<noscript><main class="sjc-noscript-main">` after `#site-nav`, repeating its h1 and intro. If you change a page's h1 or intro, change the noscript copy too.
+- **Redirects:** GitHub Pages has no server-side redirects. A moved page becomes a stub: `noindex`, canonical to the new page, meta refresh, plus `location.replace` to keep the `#anchor`. `workforce-development.html` and `product-consulting.html` are stubs.
+
+`robots.txt` and `sitemap.xml` point at the same live domain as everything else — see the CNAME item under Known outstanding.
 
 ## The enquiry form
 
@@ -90,7 +97,7 @@ Commit in small, single-purpose commits. This site has no tests and no build, so
 - `CNAME` reads `www.julianstevenson.com`, not `skillsjewels.com.au`. Every canonical/OG URL, `robots.txt` and `sitemap.xml` carries a `TODO` pointing at this — when the domain moves, all of them need the swap, not just `CNAME`.
 - Nothing on any page links to the flier.
 - `about.html`, `digital.html`, `product-strategy.html`, `product-development.html` and `advisory-services.html` carry draft copy and are `noindex, follow`. Each has a comment above its robots tag. Once the wording is approved, flip each to `index, follow` and add it to `sitemap.xml` at the same time.
-- `workforce-development.html` duplicates Tertiary Education's content until it's replaced by a redirect stub (meta refresh + canonical to `tertiary-education.html`). Nothing in the menu or on the home page links to it any more.
-- `product-consulting.html` is a placeholder — copy, `noindex` and sitemap exclusion all need revisiting once that proposition is shaped.
-- `index.html` uses `assets/share.jpg` (1200×630, cropped from the hero photo) as its `og:image`/`twitter:image`. The other three pages still point at `assets/favicon.png`, which is 32×32 — their link previews will look thin until they get a share image.
+- `workforce-development.html` and `product-consulting.html` are redirect stubs (to `tertiary-education.html` and `product-strategy.html`). Keep them so old links and search results still land somewhere. Delete them only once Search Console shows no traffic to either.
+- Employment Services, Tertiary Education and Digital use the shared `share-brand.jpg` until each gets a headline photo. Each has a comment above its `og:image` saying so.
+- Google Search Console isn't set up yet. See README, SEO section, for the steps.
 - `assets/hero.jpg` (home page hero) is AI-generated (Gemini). The generator put TAFE NSW logos and garbled name badges into the scene; they were blurred out before publishing. Any replacement image needs the same check — no real organisation's branding, no fake names.
