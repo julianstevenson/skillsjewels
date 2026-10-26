@@ -4,20 +4,20 @@ Context for Claude Code working in this repository. Read `README.md` for the ful
 
 ## What this is
 
-Julian Stevenson's tertiary product practice site (julianstevenson.com), with SkillsJewels as one specific initiative on its own page. The broader business name isn't settled: the header and footer wordmark come from `BRAND` in `site-chrome.js`, so a rename starts there. A handful of static pages, no build step, no framework beyond a runtime shim. Deployed by GitHub Pages from the branch root.
+The SkillsJewels marketing site. A handful of static pages, no build step, no framework beyond a runtime shim. Deployed by GitHub Pages from the branch root.
 
 | Page | File | Covers |
 |---|---|---|
-| Home | `index.html` | Hub page, first person: "Tertiary products for people who are already working", a proof line (RMIT Online, Open Colleges/Alffie, Envato, Veda and others), "What I work on" with three Tertiary product cards (Microcredentials, Online postgraduate *Soon*, SkillsJewels) and three Services cards, and a general enquiry form. |
+| Home | `index.html` | Hub page: "Product thinking for the systems that train people, employ them and equip them", a proof line (15+ years in product; Envato, RMIT Online, Sensis, Dun & Bradstreet, Veda), and "Where we work" with three Industry cards and three Services cards, and a general enquiry form. This is the site's entry point. |
 | About | `about.html` | Why SkillsJewels exists, how we work, and links to the three industries. Not on the Industry/Services template's content model. *Draft copy, `noindex`.* No founder note yet. |
 | Contact | `contact.html` | The general enquiry form as the page's main content. The menu's Contact link and the chrome's default CTA point here. |
-| SkillsJewels | `skillsjewels.html` | The employment services to tertiary bridge, as a single page carrying the SkillsJewels lockup in its hero: ~800,000 people on employment services caseloads, overwhelmingly equity-relevant, almost none counted toward the Universities Accord's attainment target or its equity parity ambition. Replaces `employment-services.html`, now a redirect stub. |
+| Employment Services | `employment-services.html` | The original proposition: ~800,000 people sit on employment services caseloads across Workforce Australia, IEA, RAES and Transition to Work, that population is overwhelmingly equity-relevant, and almost none of it is counted toward the Universities Accord's attainment and equity targets. |
 | Tertiary Education | `tertiary-education.html` | Industry page for universities and TAFEs: post-experience microcredentials designed with industry, assessed by the provider, stacking toward an award. Built from the Workforce Development content, which it replaces. |
 | Digital | `digital.html` | Industry page for tech businesses: product strategy, product teams and operating models. *Draft copy:* `noindex` and out of the sitemap until the wording is approved. |
 | Product Strategy | `product-strategy.html` | Service page, for any organisation: deciding what to build, for whom, and what to stop doing. *Draft copy, `noindex`.* |
 | Product Development | `product-development.html` | Service page: discovery, delivery and building the team, from agreed strategy to working software. *Draft copy, `noindex`.* |
 | Advisory Services | `advisory-services.html` | Service page: senior product counsel for leadership teams, boards and investors. *Draft copy, `noindex`.* |
-| Redirect stubs | `workforce-development.html`, `product-consulting.html`, `employment-services.html` | Old URLs, redirecting to Tertiary Education, Product Strategy and SkillsJewels. See SEO. |
+| Redirect stubs | `workforce-development.html`, `product-consulting.html` | Old URLs, redirecting to Tertiary Education and Product Strategy. See SEO. |
 
 All of them, plus `privacy.html`, share one nav and one footer rendered by `site-chrome.js` (see below), and the same brand and layout conventions. `SkillsJewels Flier.dc.html` is a separate print artefact, not part of this set.
 
@@ -94,9 +94,6 @@ python3 -m http.server 8000
 Commit in small, single-purpose commits. This site has no tests and no build, so `git revert` is the safety net.
 
 ## Known outstanding
-
-- Restructure in progress (Oct 2026): menu is Tertiary product (Microcredentials, Online postgraduate *Soon*, SkillsJewels) · Services · Work *Soon* · About · Contact. Digital is out of the menu but the file is kept, `noindex`. The Services pages, About and Tertiary Education still carry the old "we"/SkillsJewels voice and need a first-person, tertiary-buyer rewrite. The favicon is still the SkillsJewels mark.
-- Don't reintroduce "55% of enrolments from underrepresented groups". The Accord's 55% is bachelor attainment for 25–34-year-olds; the equity goal is participation parity by 2050.
 
 - The flier still has its export filename, `SkillsJewels Flier.dc.html`. Renaming it to `flier.html` is safe — nothing links to it.
 - `CNAME` reads `www.julianstevenson.com`, not `skillsjewels.com.au`. Every canonical/OG URL, `robots.txt` and `sitemap.xml` carries a `TODO` pointing at this — when the domain moves, all of them need the swap, not just `CNAME`.
