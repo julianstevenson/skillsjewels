@@ -95,6 +95,7 @@ Commit in small, single-purpose commits. This site has no tests and no build, so
 
 ## Known outstanding
 
+- Don't reintroduce "55% of enrolments from underrepresented groups". The Accord's 55% is bachelor attainment for 25–34-year-olds; its equity goal is participation parity by 2050, with interim targets for 2035.
 - The flier still has its export filename, `SkillsJewels Flier.dc.html`. Renaming it to `flier.html` is safe — nothing links to it.
 - `CNAME` reads `www.julianstevenson.com`, not `skillsjewels.com.au`. Every canonical/OG URL, `robots.txt` and `sitemap.xml` carries a `TODO` pointing at this — when the domain moves, all of them need the swap, not just `CNAME`.
 - Nothing on any page links to the flier.
