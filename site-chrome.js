@@ -55,42 +55,30 @@
 
   /* ---------- Site map ---------- */
 
-  // `industries` keeps its key so existing data-sj-menu analytics values stay comparable;
-  // its label is now "Tertiary product". Digital is out of the menu (page kept, noindex).
   var MENU = {
     industries: {
-      label: 'Tertiary product',
+      label: 'Industries',
       items: [
-        { name: 'Microcredentials & post-experience', href: 'tertiary-education.html', desc: 'Credentials designed with industry, assessed by your institution, stacking toward an award.' },
-        { name: 'Online postgraduate', desc: 'Portfolio and product strategy for online graduate certificates and master’s.' },
-        { name: 'SkillsJewels', href: 'skillsjewels.html', desc: 'The bridge from the employment services caseload to tertiary enrolments that count toward Accord targets.' }
+        { name: 'Employment Services', href: 'employment-services.html', desc: 'Turn employment services caseloads into enrolments that count toward Accord targets.' },
+        { name: 'Tertiary Education', href: 'tertiary-education.html', desc: 'Microcredentials designed with industry, assessed by your institution, stacking toward an award.' },
+        { name: 'Digital', href: 'digital.html', desc: 'Product strategy, teams and operating models for tech businesses that have outgrown founder judgement.' }
       ]
     },
     services: {
       label: 'Services',
       items: [
-        { name: 'Product Strategy', href: 'product-strategy.html', desc: 'Decide which products to build, for which learners, and what to stop offering.' },
-        { name: 'Product Development', href: 'product-development.html', desc: 'Lead a product from agreed direction to launch, with your team set up to own it.' },
-        { name: 'Advisory Services', href: 'advisory-services.html', desc: 'Senior product counsel for tertiary leadership teams, boards and investors.' }
+        { name: 'Product Strategy', href: 'product-strategy.html', desc: 'Decide what to build, for whom, and what to stop doing, with measures leaders hold themselves to.' },
+        { name: 'Product Development', href: 'product-development.html', desc: 'Take a product from agreed direction to working software, with a team set up to keep going.' },
+        { name: 'Advisory Services', href: 'advisory-services.html', desc: 'Senior product counsel for leadership teams, boards and investors, retained or for a single decision.' }
       ]
     },
-    work: { name: 'Work' },
     about: { name: 'About', href: 'about.html' },
     contact: { name: 'Contact', href: 'contact.html' }
   };
 
-  // The broader practice trades under Julian's name until the business name is settled.
-  // Change BRAND here and the wordmark in nav and footer follows.
-  var BRAND = 'Julian Stevenson';
-  var BRAND_SUB = 'Tertiary product';
   var EMAIL = 'info@julianstevenson.com';
-  var TAGLINE = 'Product strategy, development and advisory for online and post-experience tertiary education.';
-  var ACKNOWLEDGEMENT = 'Julian Stevenson acknowledges the Traditional Custodians of Country throughout Australia and their continuing connection to land, waters and community. I pay my respects to Elders past and present.';
-
-  function wordmark(cls) {
-    return '<span class="sjc-wordmark ' + cls + '"><span class="sjc-wordmark-name">' + esc(BRAND) +
-      '</span><span class="sjc-wordmark-sub">' + esc(BRAND_SUB) + '</span></span>';
-  }
+  var TAGLINE = 'The bridge between tertiary education and the rest of the system.';
+  var ACKNOWLEDGEMENT = 'SkillsJewels acknowledges the Traditional Custodians of Country throughout Australia and their continuing connection to land, waters and community. We pay our respects to Elders past and present.';
 
   /* ---------- Helpers ---------- */
 
@@ -154,13 +142,12 @@
     host.setAttribute('aria-label', 'Main');
     host.innerHTML =
       '<div class="sjc-bar">' +
-        '<a class="sjc-logo" href="index.html" data-sj-menu="logo" aria-label="' + esc(BRAND) + ' home">' +
-          wordmark('') +
+        '<a class="sjc-logo" href="index.html" data-sj-menu="logo">' +
+          '<img src="assets/SkillsJewels_Lockup_Horizontal.svg" alt="SkillsJewels home" width="196" height="40">' +
         '</a>' +
         '<ul class="sjc-menu" id="sjc-menu">' +
           navGroup('industries', MENU.industries) +
           navGroup('services', MENU.services) +
-          navLink('work', MENU.work) +
           navLink('about', MENU.about) +
           navLink('contact', MENU.contact) +
         '</ul>' +
@@ -238,20 +225,20 @@
       '<div class="sjc-footer-inner">' +
         '<div class="sjc-cols">' +
           '<div class="sjc-brand">' +
-            wordmark('sjc-wordmark-reversed') +
+            '<img src="assets/SkillsJewels_Lockup_Horizontal_Reversed.svg" alt="SkillsJewels" width="180" height="37">' +
             '<p>' + esc(TAGLINE) + '</p>' +
             '<a class="sjc-brand-cta" href="' + esc(ctaHref) + '" data-sj-cta="footer">Book a scoping call</a>' +
           '</div>' +
-          '<div class="sjc-col"><h2>Tertiary product</h2>' + footerList('industries', MENU.industries.items) + '</div>' +
+          '<div class="sjc-col"><h2>Industries</h2>' + footerList('industries', MENU.industries.items) + '</div>' +
           '<div class="sjc-col"><h2>Services</h2>' + footerList('services', MENU.services.items) + '</div>' +
           '<div class="sjc-col"><h2>Company</h2>' +
-            footerList('company', [MENU.work, MENU.about, MENU.contact]).replace('</ul>',
+            footerList('company', [MENU.about, MENU.contact]).replace('</ul>',
               '<li><a href="mailto:' + EMAIL + '">' + esc(EMAIL) + '</a></li></ul>') +
           '</div>' +
         '</div>' +
         '<div class="sjc-bottom">' +
           '<p class="sjc-ack">' + esc(ACKNOWLEDGEMENT) + '</p>' +
-          '<p class="sjc-legal"><span>&copy; ' + year + ' ' + esc(BRAND) + '</span><a href="privacy.html" data-sj-menu="footer">Privacy</a></p>' +
+          '<p class="sjc-legal"><span>&copy; ' + year + ' SkillsJewels</span><a href="privacy.html" data-sj-menu="footer">Privacy</a></p>' +
         '</div>' +
       '</div>';
   }
